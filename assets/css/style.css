@@ -1,0 +1,179 @@
+/* samuelmororo.com
+   Fonte do sistema, uma coluna, sem cor de acento. */
+
+:root {
+  --text:  #000;
+  --muted: #3d3d3d;
+  --faint: #5e5e5e;
+  --rule:  #b8b8b8;
+  --link:  #0b3c8c;
+
+  /* Nenhuma fonte é carregada: as duas já existem em Windows, Mac e Linux. */
+  --serif: Georgia, "Iowan Old Style", Charter, "Times New Roman", serif;
+  --sans:  -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+}
+
+* { box-sizing: border-box; }
+body, h1, h2, h3, p, ul, li, figure { margin: 0; padding: 0; }
+ul { list-style: none; }
+img { max-width: 100%; display: block; }
+
+body {
+  font-family: var(--serif);
+  font-size: 17px;
+  line-height: 1.6;
+  color: var(--text);
+  background: #fff;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Coluna mais estreita que a anterior: serifada a 17px pede menos largura
+   para a linha não passar de ~75 caracteres. */
+.wrap {
+  max-width: 40rem;
+  margin: 0 auto;
+  padding: 2rem 1.25rem 4rem;
+}
+
+a { color: var(--link); }
+a:hover { text-decoration: none; }
+
+/* Os dois idiomas moram no HTML; esconde-se o que nao esta ativo. */
+html[data-lang="pt"] .en,
+html[data-lang="en"] .pt { display: none !important; }
+
+/* --- navegacao --- */
+.nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.1rem;
+  padding-bottom: .7rem;
+  margin-bottom: 2.25rem;
+  border-bottom: 2px solid var(--text);
+  font-size: .9375rem;
+}
+.nav a[aria-current="page"] { color: var(--text); text-decoration: none; font-weight: 600; }
+.nav .lang {
+  margin-left: auto;
+  font: inherit;
+  color: var(--link);
+  background: none;
+  border: 0;
+  padding: 0;
+  cursor: pointer;
+  text-decoration: underline;
+}
+
+/* --- titulos --- */
+h1 {
+  font-size: 1.625rem;
+  font-weight: 700;
+  letter-spacing: -.015em;
+  margin-bottom: .9rem;
+}
+/* O fio sob o h2 é o que separa as seções: sem ele a página vira um bloco só. */
+h2 {
+  font-size: 1.0625rem;
+  font-weight: 700;
+  margin-top: 2.75rem;
+  margin-bottom: 1rem;
+  padding-bottom: .4rem;
+  border-bottom: 1px solid var(--rule);
+}
+h3 {
+  font-size: 1rem;
+  font-weight: 700;
+  margin-bottom: .15rem;
+}
+
+p + p { margin-top: .9rem; }
+
+/* --- foto --- */
+/* height:auto é obrigatório: sem ele o atributo height="500" do <img> vence
+   o CSS e a foto estica. */
+.photo {
+  width: 170px;
+  height: auto;
+  float: right;
+  margin: .25rem 0 1rem 1.75rem;
+  border: 1px solid var(--rule);
+}
+@media (max-width: 480px) {
+  .photo { float: none; width: 140px; margin: 0 0 1.25rem 0; }
+}
+
+/* --- bloco de contato --- */
+.contact {
+  margin-top: 1.5rem;
+  font-size: .9375rem;
+  color: var(--muted);
+}
+.contact p + p { margin-top: .35rem; }
+
+.inline-links { margin-top: 1.5rem; font-size: .9375rem; }
+
+/* --- papers --- */
+.paper { margin-top: 1.9rem; }
+.paper:first-of-type { margin-top: 0; }
+.paper .meta { font-size: .9375rem; color: var(--muted); }
+.paper .abstract { font-size: .9375rem; color: var(--muted); margin-top: .5rem; }
+.paper .files { font-size: .9375rem; margin-top: .5rem; }
+
+/* --- listas com data --- */
+.entries li { margin-top: 1.25rem; }
+.entries li:first-child { margin-top: 0; }
+.entries .when { font-size: .9375rem; color: var(--faint); }
+.entries .what { font-weight: 600; }
+.entries .where { font-size: .9375rem; color: var(--muted); }
+.entries .note { font-size: .9375rem; color: var(--faint); }
+
+/* --- rodape --- */
+footer {
+  margin-top: 3.5rem;
+  padding-top: 1rem;
+  border-top: 1px solid var(--rule);
+  font-size: .875rem;
+  color: var(--faint);
+}
+
+:focus-visible { outline: 2px solid var(--link); outline-offset: 2px; }
+
+/* --- indice de projetos especiais --- */
+.postlist li { margin-top: 1.7rem; }
+.postlist li:first-child { margin-top: 0; }
+.postlist .when { font-size: .875rem; color: var(--faint); }
+.postlist .title { font-weight: 700; font-size: 1.0625rem; }
+.postlist .blurb { font-size: .9375rem; color: var(--muted); }
+
+/* --- corpo de um texto --- */
+.post .byline {
+  font-size: .9375rem;
+  color: var(--faint);
+  margin-bottom: 1.75rem;
+}
+.post h2 { font-size: 1.0625rem; }
+.post ul, .post ol { list-style: revert; padding-left: 1.35rem; margin-top: .9rem; }
+.post li { margin-top: .3rem; }
+.post blockquote {
+  margin: 1.2rem 0;
+  padding-left: 1rem;
+  border-left: 3px solid var(--rule);
+  color: var(--muted);
+}
+.post figure { margin: 1.75rem 0; }
+.post figcaption { font-size: .875rem; color: var(--faint); margin-top: .5rem; }
+
+/* Tabela larga rola dentro do proprio quadro, sem empurrar a pagina.
+   Tabela em sans: os algarismos da Georgia sao antigos (o 3 e o 4 descem
+   abaixo da linha), o que atrapalha a leitura de coluna de numero. */
+.tablewrap { overflow-x: auto; margin: 1.5rem 0; }
+.post table { border-collapse: collapse; font-family: var(--sans); font-size: .875rem; min-width: 100%; }
+.post th, .post td {
+  text-align: left;
+  padding: .4rem .9rem .4rem 0;
+  border-bottom: 1px solid var(--rule);
+  font-variant-numeric: tabular-nums;
+}
+.post th { font-weight: 700; border-bottom-color: var(--text); }
+
+.back { margin-top: 3rem; font-size: .9375rem; }
