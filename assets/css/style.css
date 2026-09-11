@@ -112,6 +112,11 @@ p + p { margin-top: .9rem; }
 
 .inline-links { margin-top: 1.5rem; font-size: .9375rem; }
 
+/* Lista simples com marcador, para quando 3-4 itens curtos ficam
+   melhor em linhas do que numa frase corrida (ex. Research interests). */
+.plainlist { list-style: disc; padding-left: 1.25rem; }
+.plainlist li + li { margin-top: .3rem; }
+
 /* --- papers --- */
 .paper { margin-top: 1.9rem; }
 .paper:first-of-type { margin-top: 0; }
