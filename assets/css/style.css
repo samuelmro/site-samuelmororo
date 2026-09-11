@@ -2,8 +2,6 @@
    Fonte do sistema, uma coluna, sem cor de acento. */
 
 :root {
-  --page:  #eeeeec;
-  --paper: #fff;
   --text:  #000;
   --muted: #3d3d3d;
   --faint: #5e5e5e;
@@ -28,13 +26,10 @@ body {
   font-size: 17px;
   line-height: 1.6;
   color: var(--text);
-  background: var(--page);
+  background: #fff;
   -webkit-font-smoothing: antialiased;
 }
 
-/* Neutro por enquanto -- o cartao com borda ficou pior, nao melhor.
-   Aguardando o Samuel escolher entre as opcoes de assets/layout-test.html
-   antes de comprometer com uma direcao nova. */
 .wrap {
   max-width: 40rem;
   margin: 0 auto;
@@ -53,9 +48,7 @@ html[data-lang="en"] .pt { display: none !important; }
   display: flex;
   flex-wrap: wrap;
   gap: 1.1rem;
-  padding-bottom: .7rem;
-  margin-bottom: 2.25rem;
-  border-bottom: 2px solid var(--text);
+  margin-bottom: 1.5rem;
   font-size: .9375rem;
 }
 .nav a[aria-current="page"] { color: var(--text); text-decoration: none; font-weight: 600; }
@@ -71,14 +64,17 @@ html[data-lang="en"] .pt { display: none !important; }
 }
 
 /* --- titulos --- */
-/* Nome grande o bastante pra ancorar a pagina — sem isso, tudo no
-   mesmo tamanho de texto corrido deixa a home sem nenhum ponto forte. */
+/* Fio duplo emoldurando o nome/titulo -- grosso em cima, fino embaixo.
+   É a ancora visual da pagina (opcao escolhida entre 4 testadas). */
 h1 {
   font-size: clamp(2.25rem, 6vw, 3.25rem);
   font-weight: 700;
   letter-spacing: -.02em;
   line-height: 1.05;
-  margin-bottom: 1.1rem;
+  border-top: 4px solid var(--text);
+  border-bottom: 1px solid var(--text);
+  padding-block: 1.25rem;
+  margin-bottom: 2rem;
 }
 /* O fio sob o h2 é o que separa as seções: sem ele a página vira um bloco só. */
 h2 {
