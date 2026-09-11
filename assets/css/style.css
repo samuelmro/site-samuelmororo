@@ -8,12 +8,11 @@
   --rule:  #b8b8b8;
   --link:  #0b3c8c;
 
-  /* Nenhuma fonte é carregada — nada baixado da web. Garamond aparece para
-     quem já tem ela instalada (comum em Mac com Office/Adobe, e em Windows
-     com Office); quem não tem, cai no Georgia, que é serifada em todo
-     sistema. O visual muda um pouco de visitante pra visitante — é o
-     preço de não carregar fonte nenhuma. */
-  --serif: Garamond, "Garamond Premier Pro", Georgia, "Iowan Old Style", Charter, "Times New Roman", serif;
+  /* Nenhuma fonte é carregada — nada baixado da web. Georgia é serifada
+     em todo sistema (Windows, Mac, Linux), então todo visitante ve a
+     mesma coisa. Escolhida depois de comparar ao vivo com Garamond,
+     Cambria, Constantia, Palatino e Times New Roman. */
+  --serif: Georgia, "Iowan Old Style", Charter, "Times New Roman", serif;
   --sans:  -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
 }
 
@@ -33,10 +32,15 @@ body {
 
 /* Coluna mais estreita que a anterior: serifada a 17px pede menos largura
    para a linha não passar de ~75 caracteres. */
+/* Ancorado a esquerda, nao centralizado -- numa tela larga, uma
+   coluna centralizada vira uma ilha perdida no meio do branco.
+   Cresce um pouco em telas largas (ate 7rem de margem), mas nunca
+   deixa de comecar perto da borda. */
 .wrap {
   max-width: 40rem;
-  margin: 0 auto;
-  padding: 2rem 1.25rem 4rem;
+  margin-left: clamp(1.25rem, 8vw, 7rem);
+  margin-right: 1.25rem;
+  padding-block: 2rem 4rem;
 }
 
 a { color: var(--link); }
