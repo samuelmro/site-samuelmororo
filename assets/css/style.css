@@ -8,8 +8,12 @@
   --rule:  #b8b8b8;
   --link:  #0b3c8c;
 
-  /* Nenhuma fonte é carregada: as duas já existem em Windows, Mac e Linux. */
-  --serif: Georgia, "Iowan Old Style", Charter, "Times New Roman", serif;
+  /* Nenhuma fonte é carregada — nada baixado da web. Garamond aparece para
+     quem já tem ela instalada (comum em Mac com Office/Adobe, e em Windows
+     com Office); quem não tem, cai no Georgia, que é serifada em todo
+     sistema. O visual muda um pouco de visitante pra visitante — é o
+     preço de não carregar fonte nenhuma. */
+  --serif: Garamond, "Garamond Premier Pro", Georgia, "Iowan Old Style", Charter, "Times New Roman", serif;
   --sans:  -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
 }
 
