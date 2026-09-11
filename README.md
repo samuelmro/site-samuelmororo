@@ -8,11 +8,11 @@ index.html        Home — bio, interesses, destaques
 research.html     Working papers, publicados, em andamento
 projects.html     Índice dos projetos especiais
 projects/         Um arquivo .html por texto
-cv.html           Versão curta do CV (o PDF completo é a fonte de verdade)
 assets/css/style.css   Toda a aparência do site
 assets/js/site.js      Só os botões de idioma e tema
 assets/img/            Foto e imagens
-assets/cv.pdf          Coloque seu CV aqui (ainda não existe)
+assets/cv.pdf          O CV. O link "CV" do menu abre esse PDF direto, em
+                       nova aba — não existe página de CV no site.
 ```
 
 ## Rodar localmente
