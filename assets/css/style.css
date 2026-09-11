@@ -65,11 +65,14 @@ html[data-lang="en"] .pt { display: none !important; }
 }
 
 /* --- titulos --- */
+/* Nome grande o bastante pra ancorar a pagina — sem isso, tudo no
+   mesmo tamanho de texto corrido deixa a home sem nenhum ponto forte. */
 h1 {
-  font-size: 1.625rem;
+  font-size: clamp(2.25rem, 6vw, 3.25rem);
   font-weight: 700;
-  letter-spacing: -.015em;
-  margin-bottom: .9rem;
+  letter-spacing: -.02em;
+  line-height: 1.05;
+  margin-bottom: 1.1rem;
 }
 /* O fio sob o h2 é o que separa as seções: sem ele a página vira um bloco só. */
 h2 {
