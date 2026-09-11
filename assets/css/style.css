@@ -32,18 +32,13 @@ body {
   -webkit-font-smoothing: antialiased;
 }
 
-/* O fundo da pagina é cinza bem claro; o conteudo fica num cartao branco
-   com borda, centralizado. É isso que da contraste e presenca -- nao a
-   posicao da coluna (ja tentamos colada a esquerda e ficou pior). */
+/* Neutro por enquanto -- o cartao com borda ficou pior, nao melhor.
+   Aguardando o Samuel escolher entre as opcoes de assets/layout-test.html
+   antes de comprometer com uma direcao nova. */
 .wrap {
   max-width: 40rem;
-  margin: 2rem auto 3rem;
-  padding: 3rem clamp(1.5rem, 5vw, 3.5rem) 3rem;
-  background: var(--paper);
-  border: 1px solid var(--rule);
-}
-@media (max-width: 600px) {
-  .wrap { margin: 0; border-width: 0 0 1px; padding: 1.75rem 1.25rem 3rem; }
+  margin: 0 auto;
+  padding: 2rem 1.25rem 4rem;
 }
 
 a { color: var(--link); }
