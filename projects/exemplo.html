@@ -12,23 +12,42 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>[Título do texto] — Samuel Mororó</title>
+<title>[Título do texto] · Samuel Mororó</title>
 <meta name="description" content="[Uma linha sobre o texto.]">
-<link rel="stylesheet" href="../assets/css/style.css?v=6">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400&display=swap">
+<link rel="stylesheet" href="../assets/css/style.css?v=11">
 <script src="../assets/js/site.js" defer></script>
 </head>
 <body>
-<div class="wrap">
+<div class="page">
 
-<nav class="nav">
-  <a href="../index.html"><span class="en">Home</span><span class="pt">Início</span></a>
-  <a href="../research.html"><span class="en">Research</span><span class="pt">Pesquisa</span></a>
-  <a href="../projects.html" aria-current="page"><span class="en">Special Projects</span><span class="pt">Projetos especiais</span></a>
-  <a href="../assets/cv.pdf" target="_blank" rel="noopener">CV</a>
-  <button class="lang" type="button" data-lang-toggle>English</button>
-</nav>
+<aside class="aside">
+  <p class="name"><a href="../index.html">Samuel Mororó</a></p>
+  <p class="role">
+    <span class="en">Master's student in Economics, FGV EESP. Visiting Student Research Collaborator, Princeton University.</span>
+    <span class="pt">Mestrando em Economia, FGV EESP. Visiting Student Research Collaborator, Princeton University.</span>
+  </p>
 
-<main class="post">
+  <nav>
+    <ul class="nav">
+      <li><a href="../index.html"><span class="en">Home</span><span class="pt">Início</span></a></li>
+      <li><a href="../research.html"><span class="en">Research</span><span class="pt">Pesquisa</span></a></li>
+      <li><a href="../projects.html" aria-current="page"><span class="en">Special Projects</span><span class="pt">Projetos especiais</span></a></li>
+      <li><a href="../assets/cv.pdf" target="_blank" rel="noopener">CV</a></li>
+    </ul>
+  </nav>
+
+  <div class="aside-foot">
+    <p><a href="mailto:samuel.mororo@fgv.edu.br">samuel.mororo@fgv.edu.br</a></p>
+    <p>São Paulo, Brazil</p>
+    <p><a href="https://www.linkedin.com/in/samuelmororo/" target="_blank" rel="noopener">LinkedIn</a></p>
+    <button class="lang" type="button" data-lang-toggle>English</button>
+  </div>
+</aside>
+
+<main class="content post">
   <h1>[Título do texto]</h1>
   <p class="byline">3 de março de 2026</p>
 
@@ -38,7 +57,7 @@
 
   <h2>[Um subtítulo, se o texto for longo]</h2>
 
-  <p>[Mais texto. O que segue existe só para mostrar o que já está estilizado — apague o que não usar.]</p>
+  <p>[Mais texto. O que segue existe só para mostrar o que já está estilizado. Apague o que não usar.]</p>
 
   <ul>
     <li>Item de lista</li>
@@ -67,11 +86,9 @@
   </figure>
 
   <p class="back"><a href="../projects.html">← Projetos especiais</a></p>
-</main>
 
-<footer>
-  <p>© 2026 Samuel Mororó</p>
-</footer>
+  <p class="foot">© 2026 Samuel Mororó</p>
+</main>
 
 </div>
 </body>

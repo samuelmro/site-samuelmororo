@@ -1,189 +1,262 @@
 /* samuelmororo.com
-   Fonte do sistema, uma coluna, sem cor de acento. */
+   Two columns: a fixed identity column on the left, the work on the right.
+   One serif family, near-white paper, ink text, one quiet accent. */
 
 :root {
-  --text:  #000;
-  --muted: #3d3d3d;
-  --faint: #5e5e5e;
-  --rule:  #b8b8b8;
-  --link:  #0b3c8c;
+  --paper:  #fbfaf7;
+  --ink:    #111111;
+  --muted:  #2e2e31;
+  --faint:  #505055;
+  --rule:   #b9b2a5;
+  --accent: #7c2a21;
 
-  /* Nenhuma fonte é carregada — nada baixado da web. Georgia é serifada
-     em todo sistema (Windows, Mac, Linux), então todo visitante ve a
-     mesma coisa. Escolhida depois de comparar ao vivo com Garamond,
-     Cambria, Constantia, Palatino e Times New Roman. */
-  --serif: Georgia, "Iowan Old Style", Charter, "Times New Roman", serif;
-  --sans:  -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  --serif: "Source Serif 4", Georgia, "Iowan Old Style", Charter, serif;
+  --sans:  -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+
+  --aside: 17rem;
+  --label: 9.5rem;
 }
 
 * { box-sizing: border-box; }
-body, h1, h2, h3, p, ul, li, figure { margin: 0; padding: 0; }
+body, h1, h2, h3, p, ul, ol, li, figure, blockquote { margin: 0; padding: 0; }
 ul { list-style: none; }
 img { max-width: 100%; display: block; }
 
+html { background: var(--paper); }
 body {
   font-family: var(--serif);
-  font-size: 17px;
+  font-size: 17.5px;
   line-height: 1.6;
-  color: var(--text);
-  background: #fff;
+  color: var(--ink);
+  background: var(--paper);
+  font-optical-sizing: auto;
   -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
 }
 
-.wrap {
-  max-width: 40rem;
-  margin: 0 auto;
-  padding: 2rem 1.25rem 4rem;
+a {
+  color: inherit;
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: .18em;
+  text-decoration-color: var(--rule);
+  transition: color .15s, text-decoration-color .15s;
 }
+a:hover { color: var(--accent); text-decoration-color: var(--accent); }
+:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
 
-a { color: var(--link); }
-a:hover { text-decoration: none; }
-
-/* Os dois idiomas moram no HTML; esconde-se o que nao esta ativo. */
+/* Both languages live in the HTML; hide the inactive one. */
 html[data-lang="pt"] .en,
 html[data-lang="en"] .pt { display: none !important; }
 
-/* --- navegacao --- */
-.nav {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 1.1rem;
-  margin-bottom: 1.5rem;
-  font-size: .9375rem;
+/* Small uppercase labels: nav, section labels, language button. */
+.label, .nav a, .lang {
+  font-size: .74rem;
+  font-weight: 600;
+  letter-spacing: .1em;
+  text-transform: uppercase;
 }
-.nav a[aria-current="page"] { color: var(--text); text-decoration: none; font-weight: 600; }
-.nav .lang {
-  margin-left: auto;
-  font: inherit;
-  color: var(--link);
+
+/* ---------- page grid ---------- */
+.page {
+  max-width: 74rem;
+  margin: 0 auto;
+  padding: 4.5rem 2.5rem 5rem;
+  display: grid;
+  grid-template-columns: var(--aside) minmax(0, 1fr);
+  column-gap: 5.5rem;
+}
+
+/* ---------- identity column ---------- */
+.aside {
+  position: sticky;
+  top: 4.5rem;
+  align-self: start;
+}
+
+/* The name on one line, framed by the double rule: thick above, thin below. */
+.name {
+  font-size: 2.1rem;
+  font-weight: 600;
+  line-height: 1.1;
+  letter-spacing: -.02em;
+  white-space: nowrap;
+  padding-block: .9rem .95rem;
+  border-top: 4px solid var(--ink);
+  border-bottom: 1px solid var(--ink);
+}
+.name a { text-decoration: none; }
+.name a:hover { color: inherit; }
+
+.role {
+  margin-top: 1rem;
+  font-size: .95rem;
+  line-height: 1.45;
+  color: var(--muted);
+  font-style: italic;
+}
+
+.portrait {
+  margin-top: 1.6rem;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 4 / 5;
+  object-fit: cover;
+  object-position: 50% 25%;
+  filter: grayscale(1) contrast(1.06);
+}
+
+.nav { margin-top: 2rem; }
+.nav li + li { margin-top: .5rem; }
+.nav a {
+  text-decoration: none;
+  color: var(--faint);
+  display: inline-flex;
+  align-items: center;
+}
+.nav a:hover { color: var(--ink); }
+.nav a[aria-current="page"] { color: var(--ink); }
+
+.aside-foot {
+  margin-top: 2rem;
+  padding-top: 1.1rem;
+  border-top: 1px solid var(--rule);
+  font-size: .9rem;
+  line-height: 1.55;
+  color: var(--muted);
+}
+.aside-foot p + p { margin-top: .2rem; }
+
+.lang {
+  margin-top: 1rem;
+  font-family: var(--serif);
+  color: var(--faint);
   background: none;
   border: 0;
   padding: 0;
   cursor: pointer;
-  text-decoration: underline;
 }
+.lang:hover { color: var(--accent); }
 
-/* --- titulos --- */
-/* Fio duplo emoldurando o nome/titulo -- grosso em cima, fino embaixo.
-   É a ancora visual da pagina (opcao escolhida entre 4 testadas). */
-h1 {
-  font-size: clamp(2.25rem, 6vw, 3.25rem);
-  font-weight: 700;
+/* ---------- content column ---------- */
+.content { min-width: 0; max-width: 44rem; }
+
+.page-title {
+  font-size: 2.1rem;
+  font-weight: 600;
+  line-height: 1.1;
   letter-spacing: -.02em;
-  line-height: 1.05;
-  border-top: 4px solid var(--text);
-  border-bottom: 1px solid var(--text);
-  padding-block: 1.25rem;
-  margin-bottom: 2rem;
+  padding-top: .9rem;
+  border-top: 4px solid var(--ink); /* level with the name's rule */
+  margin-bottom: .5rem;
 }
-/* O fio sob o h2 é o que separa as seções: sem ele a página vira um bloco só. */
-h2 {
-  font-size: 1.0625rem;
-  font-weight: 700;
-  margin-top: 2.75rem;
-  margin-bottom: 1rem;
-  padding-bottom: .4rem;
-  border-bottom: 1px solid var(--rule);
+.intro { margin-top: 1.25rem; color: var(--muted); max-width: 36rem; }
+
+/* A section is a label in the margin plus its body; space separates them.
+   The first one sits on a thick rule level with the name's. */
+.section {
+  display: grid;
+  grid-template-columns: var(--label) minmax(0, 1fr);
+  column-gap: 2rem;
+  margin-top: 3.25rem;
 }
-h3 {
-  font-size: 1rem;
-  font-weight: 700;
-  margin-bottom: .15rem;
+.content > .section:first-child { margin-top: 0; padding-top: 1.1rem; border-top: 4px solid var(--ink); }
+.section > .label { color: var(--ink); padding-top: .3rem; }
+.section p + p { margin-top: .95rem; }
+
+
+/* ---------- papers ---------- */
+.paper + .paper { margin-top: 2rem; }
+.paper h3 {
+  font-size: 1.1rem;
+  font-weight: 600;
+  line-height: 1.35;
 }
+.paper .meta { margin-top: .3rem; font-size: .93rem; color: var(--faint); font-style: italic; }
+.paper .abstract { margin-top: .65rem; font-size: .97rem; color: var(--muted); }
+.paper .files { margin-top: .6rem; font-size: .9rem; }
+.paper .files a + a { margin-left: 1rem; }
 
-p + p { margin-top: .9rem; }
-
-/* --- foto --- */
-/* height:auto é obrigatório: sem ele o atributo height="500" do <img> vence
-   o CSS e a foto estica. */
-.photo {
-  width: 170px;
-  height: auto;
-  float: right;
-  margin: .25rem 0 1rem 1.75rem;
-  border: 1px solid var(--rule);
+/* ---------- dated lists (education) ---------- */
+.rows li {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  column-gap: 1.5rem;
 }
-@media (max-width: 480px) {
-  .photo { float: none; width: 140px; margin: 0 0 1.25rem 0; }
+.rows li + li { margin-top: 1rem; }
+.rows .what { font-weight: 600; }
+.rows .where { display: block; font-size: .95rem; color: var(--muted); }
+.rows .when { font-size: .9rem; color: var(--faint); white-space: nowrap; padding-top: .1rem; font-variant-numeric: lining-nums tabular-nums; }
+
+.more { margin-top: 1.4rem; font-size: .93rem; }
+
+/* ---------- writing index ---------- */
+.postlist li + li { margin-top: 2rem; }
+.postlist .when { font-size: .88rem; color: var(--faint); }
+.postlist .title { margin-top: .15rem; font-size: 1.12rem; font-weight: 600; line-height: 1.35; }
+.postlist .title a { text-decoration: none; }
+.postlist .blurb { margin-top: .3rem; font-size: .97rem; color: var(--muted); }
+
+/* ---------- a single piece of writing ---------- */
+.post { max-width: 38rem; }
+.post h1 {
+  font-size: 2.1rem;
+  font-weight: 600;
+  line-height: 1.15;
+  letter-spacing: -.02em;
+  padding-top: .9rem;
+  border-top: 4px solid var(--ink);
 }
-
-/* --- bloco de contato --- */
-.contact {
-  margin-top: 1.5rem;
-  font-size: .9375rem;
-  color: var(--muted);
-}
-.contact p + p { margin-top: .35rem; }
-
-.inline-links { margin-top: 1.5rem; font-size: .9375rem; }
-
-/* Lista simples com marcador, para quando 3-4 itens curtos ficam
-   melhor em linhas do que numa frase corrida (ex. Research interests). */
-.plainlist { list-style: disc; padding-left: 1.25rem; }
-.plainlist li + li { margin-top: .3rem; }
-
-/* --- papers --- */
-.paper { margin-top: 1.9rem; }
-.paper:first-of-type { margin-top: 0; }
-.paper .meta { font-size: .9375rem; color: var(--muted); }
-.paper .abstract { font-size: .9375rem; color: var(--muted); margin-top: .5rem; }
-.paper .files { font-size: .9375rem; margin-top: .5rem; }
-
-/* --- listas com data --- */
-.entries li { margin-top: 1.25rem; }
-.entries li:first-child { margin-top: 0; }
-.entries .when { font-size: .9375rem; color: var(--faint); }
-.entries .what { font-weight: 600; }
-.entries .where { font-size: .9375rem; color: var(--muted); }
-.entries .note { font-size: .9375rem; color: var(--faint); }
-
-/* --- rodape --- */
-footer {
-  margin-top: 3.5rem;
-  padding-top: 1rem;
-  border-top: 1px solid var(--rule);
-  font-size: .875rem;
-  color: var(--faint);
-}
-
-:focus-visible { outline: 2px solid var(--link); outline-offset: 2px; }
-
-/* --- indice de projetos especiais --- */
-.postlist li { margin-top: 1.7rem; }
-.postlist li:first-child { margin-top: 0; }
-.postlist .when { font-size: .875rem; color: var(--faint); }
-.postlist .title { font-weight: 700; font-size: 1.0625rem; }
-.postlist .blurb { font-size: .9375rem; color: var(--muted); }
-
-/* --- corpo de um texto --- */
-.post .byline {
-  font-size: .9375rem;
-  color: var(--faint);
-  margin-bottom: 1.75rem;
-}
-.post h2 { font-size: 1.0625rem; }
-.post ul, .post ol { list-style: revert; padding-left: 1.35rem; margin-top: .9rem; }
+.post .byline { margin-top: .8rem; margin-bottom: 2.5rem; font-size: .93rem; color: var(--faint); font-style: italic; }
+.post p + p { margin-top: 1rem; }
+.post h2 { font-size: 1.2rem; font-weight: 600; margin: 2.4rem 0 .8rem; }
+.post ul, .post ol { list-style: revert; padding-left: 1.35rem; margin-top: 1rem; }
 .post li { margin-top: .3rem; }
 .post blockquote {
-  margin: 1.2rem 0;
-  padding-left: 1rem;
-  border-left: 3px solid var(--rule);
+  margin: 1.6rem 0;
+  padding-left: 1.2rem;
+  border-left: 1px solid var(--accent);
+  font-style: italic;
   color: var(--muted);
 }
-.post figure { margin: 1.75rem 0; }
-.post figcaption { font-size: .875rem; color: var(--faint); margin-top: .5rem; }
+.post figure { margin: 2rem 0; }
+.post figcaption { font-size: .88rem; color: var(--faint); margin-top: .6rem; }
 
-/* Tabela larga rola dentro do proprio quadro, sem empurrar a pagina.
-   Tabela em sans: os algarismos da Georgia sao antigos (o 3 e o 4 descem
-   abaixo da linha), o que atrapalha a leitura de coluna de numero. */
-.tablewrap { overflow-x: auto; margin: 1.5rem 0; }
-.post table { border-collapse: collapse; font-family: var(--sans); font-size: .875rem; min-width: 100%; }
+/* Numbers in tables are set in sans with tabular figures, so columns align. */
+.tablewrap { overflow-x: auto; margin: 1.75rem 0; }
+.post table { border-collapse: collapse; font-family: var(--sans); font-size: .85rem; min-width: 100%; }
 .post th, .post td {
   text-align: left;
-  padding: .4rem .9rem .4rem 0;
+  padding: .5rem 1rem .5rem 0;
   border-bottom: 1px solid var(--rule);
   font-variant-numeric: tabular-nums;
 }
-.post th { font-weight: 700; border-bottom-color: var(--text); }
+.post th { font-weight: 600; border-bottom-color: var(--ink); }
+.back { margin-top: 3rem; font-size: .93rem; }
 
-.back { margin-top: 3rem; font-size: .9375rem; }
+/* ---------- footer ---------- */
+.foot {
+  margin-top: 5rem;
+  padding-top: 1rem;
+  border-top: 1px solid var(--rule);
+  font-size: .82rem;
+  color: var(--faint);
+}
+
+/* ---------- narrow screens: one column ---------- */
+@media (max-width: 900px) {
+  .page { grid-template-columns: minmax(0, 1fr); padding: 2.25rem 1.25rem 3.5rem; }
+  .aside { position: static; margin-bottom: 2.75rem; }
+  .name { font-size: 1.9rem; }
+  .portrait { width: 7.5rem; margin-top: 1.4rem; }
+  .nav { display: flex; flex-wrap: wrap; gap: .5rem 1.4rem; margin-top: 1.5rem; }
+  .nav li + li { margin-top: 0; }
+    .nav a[aria-current="page"] { text-decoration: underline; text-decoration-color: var(--accent); text-underline-offset: .35em; }
+  .aside-foot { display: flex; flex-wrap: wrap; align-items: baseline; gap: .2rem 1.25rem; }
+  .aside-foot p + p { margin-top: 0; }
+  .lang { margin-top: 0; }
+  .section { grid-template-columns: minmax(0, 1fr); margin-top: 2.25rem; }
+  .section > .label { margin-bottom: .75rem; padding-top: 0; }
+  .rows li { grid-template-columns: minmax(0, 1fr); }
+  .rows .when { padding-top: 0; }
+}

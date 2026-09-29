@@ -73,14 +73,23 @@ Já estão estilizados no `exemplo.html`: subtítulo, lista, citação, tabela
 
 ## Aparência
 
-Sem fonte carregada, sem cor de acento, sem tema escuro. O corpo é serifado
-(Georgia, com Iowan Old Style e Charter como alternativas) a 17px, e o texto é
-preto no branco. Tabelas são a única exceção: ficam em sans, porque os
-algarismos da Georgia são antigos e descem abaixo da linha, o que atrapalha
-comparar números em coluna.
+Duas colunas. À esquerda, fixa ao rolar, a coluna de identidade: o nome numa
+linha só, entre o fio duplo (grosso em cima, fino embaixo), a afiliação em
+itálico, a foto (só na home, em preto e branco via CSS), o menu, contato e o
+botão de idioma. À direita, o conteúdo, em seções com o rótulo em versalete na
+margem, separadas só por espaço. A primeira seção começa num fio grosso na mesma altura do fio do nome.
+Abaixo de 900px vira uma coluna só.
 
-Toda a aparência cabe em `assets/css/style.css`. As variáveis no topo do arquivo
-(`--text`, `--rule`, `--link`, `--serif`) controlam o site inteiro.
+Fonte: Source Serif 4, carregada do Google Fonts, com Georgia como reserva.
+Fundo quase branco (`--paper`), texto quase preto (`--ink`) e um único acento
+vinho (`--accent`), usado só no hover dos links e nas citações. Tabelas em sans com algarismos tabulares.
+
+A foto do site é `assets/img/portrait-web.jpg` (520px, ~40 KB). O original em
+alta fica em `portrait.jpg` e não é carregado pelas páginas.
+
+Toda a aparência cabe em `assets/css/style.css`; as variáveis no topo
+controlam o site inteiro. O aside se repete em cada página: se mudar o menu ou
+o contato, mude nas quatro.
 
 ## Publicar
 
@@ -103,6 +112,5 @@ Para os registros `A` do GitHub, deixe o proxy **desligado** (nuvem cinza).
 - [ ] Colocar a foto em `assets/img/` e apontar o `src` em `index.html`
 - [ ] Colocar o CV em `assets/cv.pdf`
 - [ ] Preencher todo texto entre colchetes `[...]`
-- [ ] Trocar os `href="#"` dos links (Scholar, SSRN, GitHub, LinkedIn)
 - [ ] Conferir o ano no rodapé
 - [ ] Apagar o item de exemplo em `projects.html` quando o primeiro texto real entrar
