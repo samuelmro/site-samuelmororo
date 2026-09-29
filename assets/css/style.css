@@ -29,6 +29,10 @@ body {
   line-height: 1.6;
   color: var(--ink);
   background: var(--paper);
+  /* Column so the footer sits at the bottom even on short pages. */
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
   font-optical-sizing: auto;
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
@@ -59,6 +63,8 @@ html[data-lang="en"] .pt { display: none !important; }
 
 /* ---------- page grid ---------- */
 .page {
+  flex: 1 0 auto;
+  width: 100%;
   max-width: 74rem;
   margin: 0 auto;
   padding: 4.5rem 2.5rem 5rem;
@@ -234,18 +240,21 @@ html[data-lang="en"] .pt { display: none !important; }
 .post th { font-weight: 600; border-bottom-color: var(--ink); }
 .back { margin-top: 3rem; font-size: .93rem; }
 
-/* ---------- footer ---------- */
+/* ---------- footer: full width, pinned to the bottom of the page ---------- */
 .foot {
-  margin-top: 5rem;
-  padding-top: 1rem;
-  border-top: 1px solid var(--rule);
+  width: 100%;
+  max-width: 74rem;
+  margin: 0 auto;
+  padding: 0 2.5rem 2.5rem;
   font-size: .82rem;
   color: var(--faint);
 }
+.foot p { padding-top: 1rem; border-top: 1px solid var(--rule); }
 
 /* ---------- narrow screens: one column ---------- */
 @media (max-width: 900px) {
   .page { grid-template-columns: minmax(0, 1fr); padding: 2.25rem 1.25rem 3.5rem; }
+  .foot { padding: 0 1.25rem 2rem; }
   .aside { position: static; margin-bottom: 2.75rem; }
   .name { font-size: 1.9rem; }
   .portrait { width: 7.5rem; margin-top: 1.4rem; }
