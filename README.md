@@ -93,18 +93,51 @@ o contato, mude nas quatro.
 
 ## Publicar
 
-O caminho mais simples e gratuito é GitHub Pages:
+O site é servido pelo GitHub Pages, a partir do repositório
+`samuelmro/site-samuelmororo`, no domínio `samuelmororo.com` (registrado no Namecheap).
+O arquivo `CNAME` na raiz já contém o domínio — não apague.
 
-1. Crie um repositório e suba estes arquivos.
-2. Settings → Pages → Source: `Deploy from a branch`, branch `main`, pasta `/`.
-3. Em Custom domain, coloque `samuelmororo.com`. Isso cria um arquivo `CNAME`.
-4. No DNS do domínio, aponte para o GitHub:
-   - `A` em `@` → `185.199.108.153`, `185.199.109.153`, `185.199.110.153`, `185.199.111.153`
-   - `CNAME` em `www` → `<seu-usuario>.github.io`
-5. Volte em Settings → Pages e marque **Enforce HTTPS** (aparece depois que o DNS propaga).
+### 1. GitHub Pages
 
-Se comprar o domínio na Cloudflare, o DNS já está lá — é só criar os registros acima.
-Para os registros `A` do GitHub, deixe o proxy **desligado** (nuvem cinza).
+1. No repositório: Settings → Pages → Source: `Deploy from a branch`, branch `main`, pasta `/ (root)`.
+2. Em **Custom domain**, confirme `samuelmororo.com` e clique em Save.
+3. Pages grátis exige repositório **público** (em privado só com GitHub Pro).
+
+### 2. DNS no Namecheap
+
+Domain List → `samuelmororo.com` → **Manage**.
+
+- Na aba **Domain**, em *Nameservers*, deixe **Namecheap BasicDNS**.
+- Na aba **Advanced DNS**, em *Host Records*, apague o que o Namecheap cria
+  sozinho (o `CNAME www → parkingpage.namecheap.com` e o `URL Redirect` em `@`)
+  e adicione:
+
+| Type         | Host  | Value                  | TTL       |
+|--------------|-------|------------------------|-----------|
+| A Record     | `@`   | `185.199.108.153`      | Automatic |
+| A Record     | `@`   | `185.199.109.153`      | Automatic |
+| A Record     | `@`   | `185.199.110.153`      | Automatic |
+| A Record     | `@`   | `185.199.111.153`      | Automatic |
+| CNAME Record | `www` | `samuelmro.github.io.` | Automatic |
+
+Opcional (IPv6), quatro `AAAA Record` em `@`: `2606:50c0:8000::153`,
+`2606:50c0:8001::153`, `2606:50c0:8002::153`, `2606:50c0:8003::153`.
+
+Registros de e-mail (MX, TXT) que existirem podem ficar.
+
+### 3. HTTPS
+
+A propagação costuma levar de minutos a algumas horas. Quando Settings → Pages
+mostrar "DNS check successful", marque **Enforce HTTPS** (o certificado pode
+levar mais uns minutos para sair). `www.samuelmororo.com` redireciona sozinho
+para `samuelmororo.com`.
+
+Para conferir o DNS pelo terminal:
+
+```bash
+dig samuelmororo.com +short        # os quatro 185.199.x.153
+dig www.samuelmororo.com +short    # samuelmro.github.io. e os IPs
+```
 
 ## Antes de publicar, revise
 
